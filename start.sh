@@ -42,4 +42,4 @@ echo "--- Bắt đầu Lavalink ở chế độ tiền cảnh ---"
 # Chạy Lavalink ở chế độ tiền cảnh.
 # Lệnh 'exec' sẽ thay thế tiến trình shell hiện tại bằng tiến trình Lavalink,
 # đảm bảo rằng container Docker vẫn hoạt động miễn là Lavalink chạy.
-exec java -jar Javalink.jar # Đảm bảo tên file JAR chính xác (Javalink.jar)
+exec java -jar Lavalink.jar # Đảm bảo tên file JAR chính xác (Javalink.jar)
