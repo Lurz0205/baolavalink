@@ -1,1 +1,2 @@
-Flask==2.3.3 # Phiên bản Flask bạn muốn dùng. Có thể dùng phiên bản mới nhất.
+Flask==2.3.3 # Hoặc phiên bản Flask bạn đang dùng
+gunicorn==20.1.0 # Hoặc phiên bản Gunicorn mới nhất
