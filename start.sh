@@ -1,17 +1,19 @@
 #!/bin/bash
 set -ex # Bật chế độ gỡ lỗi (in ra từng lệnh) và thoát nếu có lỗi
 
-echo "--- Bắt đầu Flask app ---"
+echo "--- Bắt đầu Flask app với Gunicorn ---"
 
-# Chạy Flask app ở chế độ nền.
+# Chạy Flask app bằng Gunicorn ở chế độ nền.
+# Gunicorn sẽ lắng nghe trên cổng 5000 (hoặc PORT từ biến môi trường).
 # Chuyển hướng tất cả output (stdout và stderr) vào file flask_app.log
-# Sử dụng 'python3 -u' để đảm bảo output không bị đệm, giúp xem log theo thời gian thực.
-python3 -u app.py > flask_app.log 2>&1 &
+# Sử dụng 'nohup' để đảm bảo nó chạy nền và không bị dừng khi shell thoát.
+# Sử dụng --bind 0.0.0.0:${FLASK_PORT} để Gunicorn lắng nghe trên mọi interface.
+nohup gunicorn -w 1 --bind 0.0.0.0:${FLASK_PORT:-5000} app:app > flask_app.log 2>&1 &
 FLASK_PID=$! # Lấy ID tiến trình của Flask app
 
 echo "Flask app đã được khởi động với PID ${FLASK_PID}"
 
-FLASK_PORT=5000
+FLASK_PORT=${FLASK_PORT:-5000} # Đảm bảo FLASK_PORT được định nghĩa
 MAX_RETRIES=30
 RETRY_INTERVAL=2
 
