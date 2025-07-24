@@ -1,9 +1,9 @@
 # Sử dụng một image cơ bản của Ubuntu để dễ dàng cài đặt cả Java và Python
 FROM ubuntu:22.04
 
-# Cập nhật danh sách gói và cài đặt Java (OpenJDK 17), Python 3, pip và supervisor
+# Cập nhật danh sách gói và cài đặt Java (OpenJDK 17), Python 3, pip
 RUN apt-get update && \
-    apt-get install -y openjdk-17-jdk python3 python3-pip supervisor && \
+    apt-get install -y openjdk-17-jdk python3 python3-pip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -17,10 +17,13 @@ ADD https://github.com/Lurz0205/baolavalink/releases/download/v4.1.1/Lavalink.ja
 # Sao chép file application.yml vào thư mục làm việc (giả sử nó ở thư mục gốc)
 COPY application.yml .
 
-# Sao chép các file Flask app và cấu hình Supervisord
+# Sao chép các file Flask app và script khởi động
 COPY app.py .
 COPY requirements.txt .
-COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+COPY start.sh .
+
+# Cấp quyền thực thi cho script khởi động
+RUN chmod +x start.sh
 
 # Cài đặt các thư viện Python từ requirements.txt
 RUN pip install -r requirements.txt
@@ -31,6 +34,6 @@ RUN pip install -r requirements.txt
 EXPOSE 8080
 EXPOSE 5000
 
-# Lệnh để chạy Supervisord khi container khởi động
-# Supervisord sẽ quản lý việc chạy cả Flask app và Lavalink
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+# Lệnh để chạy script khởi động khi container khởi động
+# Script này sẽ đảm bảo Flask app khởi động trước và mở cổng
+CMD ["./start.sh"]
