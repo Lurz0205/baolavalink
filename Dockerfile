@@ -11,10 +11,10 @@ RUN apt-get update && \
 WORKDIR /app
 
 # Tải xuống file Javalink.jar từ GitHub Releases của bạn
-# Đảm bảo đường dẫn URL chính xác đến file JAR của bạn (đã sửa J hoa)
-ADD https://github.com/Lurz0205/baolavalink/releases/download/v4.1.1/Lavalink.jar Lavalink.jar
+# Đảm bảo đường dẫn URL chính xác đến file JAR của bạn (J viết hoa nếu đúng)
+ADD https://github.com/Lurz0205/baolavalink/releases/download/v4.1.1/Javalink.jar Javalink.jar
 
-# THÊM BƯỚC KIỂM TRA SAU KHI TẢI JAR
+# THÊM BƯỚC KIỂM TRA SAU KHI TẢI JAR (chỉ để gỡ lỗi, có thể xóa sau)
 # Kiểm tra xem file Javalink.jar có tồn tại không
 RUN ls -lh Javalink.jar || echo "Javalink.jar not found after ADD command!"
 # Kiểm tra xem file có thể đọc được không
