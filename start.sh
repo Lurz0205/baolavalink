@@ -6,7 +6,7 @@ echo "Starting Flask app in background..."
 # Chạy Flask app ở chế độ nền.
 # Sử dụng nohup để đảm bảo nó không bị dừng khi shell thoát.
 # Ghi output vào file log riêng hoặc /dev/null nếu không muốn log quá nhiều.
-nohup python3 app.py > /dev/null 2>&1 &
+nohup python3 app.py > /dev/null 2>&1 & # Đã thay đổi 'python' thành 'python3'
 
 echo "Flask app started. Giving it a moment to bind port..."
 sleep 5 # Đợi 5 giây để Flask app chắc chắn đã khởi động và mở cổng
