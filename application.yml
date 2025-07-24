@@ -4,8 +4,7 @@ server:
 
 lavalink:
   server:
-    # Dòng mật khẩu đã được xóa hoàn toàn.
-    # Nếu bạn muốn để trống thay vì xóa, bạn có thể dùng: password: ""
+    password: "baotoxic"
     sources:
       youtube: false
       bandcamp: true
