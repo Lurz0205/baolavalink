@@ -4,7 +4,7 @@ server: # Cấu hình máy chủ Lavalink
 
 lavalink:
   server:
-    password: "baohiten" # Thay đổi bằng mật khẩu mạnh của bạn
+    password: "12345" # Thay đổi bằng mật khẩu mạnh của bạn
     sources: # Bật/tắt các nguồn nhạc bạn muốn hỗ trợ
       youtube: true
       bandcamp: false
