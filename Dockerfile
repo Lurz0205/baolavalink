@@ -1,21 +1,26 @@
-# Sử dụng Java Runtime Environment (JRE) phiên bản 17 làm nền
-FROM openjdk:17-jre-slim
+# Sử dụng một image cơ bản của Java (ví dụ: OpenJDK 17)
+FROM openjdk:17-jdk-slim
 
-# Thiết lập thư mục làm việc bên trong container
+# Đặt thư mục làm việc bên trong container
 WORKDIR /app
 
-# Tải Lavalink JAR từ trang Releases chính thức của GitHub
-# Biến LAVALINK_VERSION sẽ được truyền từ GitHub Actions
-ARG LAVALINK_VERSION
-ADD https://github.com/lavalink-devs/Lavalink/releases/download/v${LAVALINK_VERSION}/Lavalink.jar Lavalink.jar
+# Tải xuống file javalink.jar từ GitHub Releases của bạn
+# Đảm bảo đường dẫn URL chính xác đến file JAR của bạn
+# Bạn đã cung cấp link: https://github.com/Lurz0205/baolavalink/releases/tag/v4.1.1
+# File JAR thực tế là https://github.com/Lurz0205/baolavalink/releases/download/v4.1.1/javalink.jar
+ADD https://github.com/Lurz0205/baolavalink/releases/download/v4.1.1/javalink.jar javalink.jar
 
-# Tạo file application.yml với cấu hình cơ bản
-# LƯU Ý: Mật khẩu sẽ được đặt thông qua biến môi trường trên Render.com để bảo mật hơn
-# Port mặc định 8080 cho Lavalink khi chạy trong Docker
-RUN echo "server:\n  port: 8080\n  address: 0.0.0.0\n\nlavalink:\n  server:\n    password: \"DUMMY_PASSWORD\"\n    sources:\n      youtube: true\n      soundcloud: true: true\n      bandcamp: true\n      twitch: true\n      vimeo: true" > application.yml
+# Sao chép file application.yml vào thư mục làm việc
+# Giả sử application.yml nằm ở thư mục gốc của repo
+COPY application.yml .
+# Nếu application.yml nằm trong thư mục con, ví dụ: 'config', thì dùng lệnh sau:
+# COPY config/application.yml .
 
-# Khai báo cổng mà Lavalink sẽ lắng nghe
+# Đặt cổng mà Lavalink sẽ lắng nghe
 EXPOSE 8080
 
 # Lệnh để chạy Lavalink khi container khởi động
-CMD ["java", "-jar", "Lavalink.jar"]
+ENTRYPOINT ["java", "-jar", "javalink.jar"]
+
+# Nếu bạn muốn chỉ định file config location:
+# ENTRYPOINT ["java", "-jar", "javalink.jar", "--spring.config.location=./application.yml"]
