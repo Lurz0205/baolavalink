@@ -7,7 +7,7 @@ lavalink:
     # Dòng mật khẩu đã được xóa hoàn toàn.
     # Nếu bạn muốn để trống thay vì xóa, bạn có thể dùng: password: ""
     sources:
-      youtube: true
+      youtube: false
       bandcamp: true
       soundcloud: true
       twitch: true
