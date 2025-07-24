@@ -10,15 +10,15 @@ RUN apt-get update && \
 # Đặt thư mục làm việc bên trong container
 WORKDIR /app
 
-# Tải xuống file javalink.jar từ GitHub Releases của bạn
-# Đảm bảo đường dẫn URL chính xác đến file JAR của bạn
+# Tải xuống file Javalink.jar từ GitHub Releases của bạn
+# Đảm bảo đường dẫn URL chính xác đến file JAR của bạn (đã sửa J hoa)
 ADD https://github.com/Lurz0205/baolavalink/releases/download/v4.1.1/Lavalink.jar Lavalink.jar
 
 # THÊM BƯỚC KIỂM TRA SAU KHI TẢI JAR
-# Kiểm tra xem file javalink.jar có tồn tại không
-RUN ls -lh javalink.jar || echo "javalink.jar not found after ADD command!"
-# Kiểm tra xem file có thể thực thi được không (quyền đọc)
-RUN test -r javalink.jar || echo "javalink.jar is not readable!"
+# Kiểm tra xem file Javalink.jar có tồn tại không
+RUN ls -lh Javalink.jar || echo "Javalink.jar not found after ADD command!"
+# Kiểm tra xem file có thể đọc được không
+RUN test -r Javalink.jar || echo "Javalink.jar is not readable!"
 
 # Sao chép file application.yml vào thư mục làm việc (giả sử nó ở thư mục gốc)
 COPY application.yml .
@@ -34,10 +34,9 @@ RUN chmod +x start.sh
 # Cài đặt các thư viện Python từ requirements.txt
 RUN pip install -r requirements.txt
 
-# Mở các cổng cần thiết:
-# 8080 là cổng của Lavalink
-# 5000 là cổng của Flask app (mà UptimeRobot sẽ ping)
-EXPOSE 8080
+# CHỈ MỞ CỔNG 5000 CHO FLASK APP.
+# Render sẽ coi đây là cổng chính của dịch vụ web.
+# Lavalink vẫn sẽ lắng nghe trên 8080 bên trong container.
 EXPOSE 5000
 
 # Lệnh để chạy script khởi động khi container khởi động
