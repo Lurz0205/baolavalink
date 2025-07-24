@@ -12,7 +12,7 @@ WORKDIR /app
 
 # Tải xuống file javalink.jar từ GitHub Releases của bạn
 # Đảm bảo đường dẫn URL chính xác đến file JAR của bạn
-ADD https://github.com/Lurz0205/baolavalink/releases/download/v4.1.1/javalink.jar javalink.jar
+ADD https://github.com/Lurz0205/baolavalink/releases/download/v4.1.1/Javalink.jar Javalink.jar
 
 # THÊM BƯỚC KIỂM TRA SAU KHI TẢI JAR
 # Kiểm tra xem file javalink.jar có tồn tại không
