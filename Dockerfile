@@ -2,8 +2,9 @@
 FROM ubuntu:22.04
 
 # Cập nhật danh sách gói và cài đặt Java (OpenJDK 17), Python 3, pip
+# Thêm 'curl' để kiểm tra việc tải file JAR
 RUN apt-get update && \
-    apt-get install -y openjdk-17-jdk python3 python3-pip && \
+    apt-get install -y openjdk-17-jdk python3 python3-pip curl && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -12,7 +13,13 @@ WORKDIR /app
 
 # Tải xuống file javalink.jar từ GitHub Releases của bạn
 # Đảm bảo đường dẫn URL chính xác đến file JAR của bạn
-ADD https://github.com/Lurz0205/baolavalink/releases/download/v4.1.1/Lavalink.jar Javalink.jar
+ADD https://github.com/Lurz0205/baolavalink/releases/download/v4.1.1/Javalink.jar Javalink.jar
+
+# THÊM BƯỚC KIỂM TRA SAU KHI TẢI JAR
+# Kiểm tra xem file javalink.jar có tồn tại không
+RUN ls -lh javalink.jar || echo "javalink.jar not found after ADD command!"
+# Kiểm tra xem file có thể thực thi được không (quyền đọc)
+RUN test -r javalink.jar || echo "javalink.jar is not readable!"
 
 # Sao chép file application.yml vào thư mục làm việc (giả sử nó ở thư mục gốc)
 COPY application.yml .
