@@ -1,0 +1,1 @@
+Flask==2.3.3 # Phiên bản Flask bạn muốn dùng. Có thể dùng phiên bản mới nhất.
