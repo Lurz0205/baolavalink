@@ -1,13 +1,36 @@
-server:
-  port: 8080 # Render sẽ dùng port này
-  address: 0.0.0.0 # Bắt buộc cho Render để nhận kết nối
+server: # Cấu hình máy chủ Lavalink
+  port: 8080 # Cổng mà Lavalink sẽ lắng nghe (Render sẽ tự động ánh xạ)
+  address: 0.0.0.0 # Địa chỉ IP để lắng nghe kết nối
 
 lavalink:
   server:
-    password: "baotoxic" # Đổi thành mật khẩu mạnh của riêng bạn!
-    sources: # Bạn có thể bật/tắt các nguồn nhạc ở đây
+    password: "baohiten" # Thay đổi bằng mật khẩu mạnh của bạn
+    sources: # Bật/tắt các nguồn nhạc bạn muốn hỗ trợ
       youtube: true
+      bandcamp: false
       soundcloud: true
-      bandcamp: true
-      twitch: true
-      vimeo: true
+      twitch: false
+      vimeo: false
+      mixer: true
+      http: true
+      local: true
+    bufferDurationMs: 400
+    frameBufferDurationMs: 5000
+    opusEncodingTimeoutMs: 1000
+    trackStuckThresholdMs: 10000
+    youtubePlaylistLoadLimit: 6
+    playerUpdateIntervalMs: 1000
+    gc-warnings: true
+
+metrics:
+  prometheus: false # Có thể bật nếu bạn muốn giám sát bằng Prometheus
+
+suggesters:
+  youtube: true
+  spotify: true
+  deezer: false
+  applemusic: false
+
+spotify:
+  clientId: "38d04ede941546e880cf92b091e13329" # Điền Spotify Client ID của bạn nếu bạn muốn hỗ trợ Spotify
+  clientSecret: "902de3f31e0745b285a9a1550ea476c9" # Điền Spotify Client Secret của bạn
