@@ -12,7 +12,7 @@ WORKDIR /app
 
 # Tải xuống file javalink.jar từ GitHub Releases của bạn
 # Đảm bảo đường dẫn URL chính xác đến file JAR của bạn
-ADD https://github.com/Lurz0205/baolavalink/releases/download/v4.1.1/Javalink.jar javalink.jar
+ADD https://github.com/Lurz0205/baolavalink/releases/download/v4.1.1/Lavalink.jar Javalink.jar
 
 # Sao chép file application.yml vào thư mục làm việc (giả sử nó ở thư mục gốc)
 COPY application.yml .
