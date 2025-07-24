@@ -1,0 +1,13 @@
+server:
+  port: 8080 # Render sẽ dùng port này
+  address: 0.0.0.0 # Bắt buộc cho Render để nhận kết nối
+
+lavalink:
+  server:
+    password: "baotoxic" # Đổi thành mật khẩu mạnh của riêng bạn!
+    sources: # Bạn có thể bật/tắt các nguồn nhạc ở đây
+      youtube: true
+      soundcloud: true
+      bandcamp: true
+      twitch: true
+      vimeo: true
