@@ -4,7 +4,7 @@ server:
 
 lavalink:
   server:
-    # password: "baotoxic"
+    password: "baotoxic"
     sources:
       youtube: false
       bandcamp: true
